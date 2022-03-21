@@ -36,9 +36,9 @@ app.get('/api/animals', cors(), async (req, res) => {
     }
 });
 
-//create the POST request
+// create the POST request
 // app.post('/api/animals', cors(), async (req, res) => {
-//     const newUser = { firstname: req.body.firstname, lastname: req.body.lastname }
+//     const newUser = { commonname: req.body.firstname, lastname: req.body.lastname }
 //     console.log([newUser.firstname, newUser.lastname]);
 //     const result = await db.query(
 //         'INSERT INTO students(firstname, lastname) VALUES($1, $2) RETURNING *',
