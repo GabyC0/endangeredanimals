@@ -11,9 +11,7 @@ function Animals() {
             .then(animal => {
                 //setStudents((students[3]));
                 setAnimal(animal);
-            }
-            )
-        
+            }) 
     }, []);
 
 
@@ -27,12 +25,13 @@ const addAnimal = (newAnimal) => {
 
 return (
     <div className="animals">
-        <h2> List of Animals </h2>
+        <h2>List of Animals</h2>
         <ul>
             {animal.map(animal =>
-                <li key={animal.id}> {animal.commonname} {animal.scientificname} {animal.numberinthewild}</li>)}
+                <li key={animal.id}><br/><b>Common Name: </b> {animal.commonname}   <b>Sientific Name: </b>{animal.scientificname}  <b>Amount in Wild: </b>{animal.numberinthewild}</li>)}
         </ul>
         <Form addAnimal={addAnimal} />
+
     </div>
 );
   }

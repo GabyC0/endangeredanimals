@@ -16,18 +16,6 @@ app.get('/', (req, res) => {
 
 //create the get request
 app.get('/api/animals', cors(), async (req, res) => {
-    //this is db name
-    // const endangeredanimals = [
-
-    //     { id: 1, commonname: 'Lisa', scientificname: 'Lee', numberinthewild: 200, conservationcode: 1,  },
-    //     { id: 2, firstName: 'Eileen', lastName: 'Long' },
-    //     { id: 3, firstName: 'Fariba', lastName: 'Dako' },
-    //     { id: 4, firstName: 'Cristina', lastName: 'Rodriguez' },
-    //     { id: 5, firstName: 'Andrea', lastName: 'Trejo' },
-    // ];
-    //table name??
-    // res.json(STUDENTS);
-    //table name
     try{
         const { rows: animals } = await db.query('SELECT * FROM animals');
         res.send(animals);
@@ -44,6 +32,7 @@ app.get('/api/sightings', cors(), async (req, res) => {
         return res.status(400).json({e});
     }
 });
+
 
 //create the POST request
 app.post('/api/animals', cors(), async (req, res) => {

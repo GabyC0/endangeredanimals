@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 const Form = (props) => {
-    const [animal, setAnimal] = useState({
-        commonname: "",
-        scientificname: "",
-        numberinthewild: "",
-        conservationcode: ""
+    const [sightings, setSightings] = useState({
+        location: "",
+        healthy: "",
+        individualid: "",
+        datetime: ""
     });
 
 //     //create functions that handle the event of the user typing into the form
