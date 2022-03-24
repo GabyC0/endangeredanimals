@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-//import Form from "./form";
+import Form from "./Form";
 
 function Animals() {
 
-    const [animals, setAnimals] = useState([]);
+    const [animal, setAnimal] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:5001/api/animals")
             .then((response) => response.json())
-            .then(animals => {
+            .then(animal => {
                 //setStudents((students[3]));
-                setAnimals(animals);
+                setAnimal(animal);
             }
             )
         
@@ -18,21 +18,21 @@ function Animals() {
 
 
 
-// const addStudent = (newStudent) => {
-//     //console.log(newStudent);
-//     //postStudent(newStudent);
-//     setStudents((students) => [...students, newStudent]);
-// }
+const addAnimal = (newAnimal) => {
+    //console.log(newStudent);
+    //postStudent(newStudent);
+    setAnimal((animal) => [...animal, newAnimal]);
+}
 
 
 return (
     <div className="animals">
         <h2> List of Animals </h2>
         <ul>
-            {animals.map(animals =>
-                <li key={animals.id}> {animals.commonname} {animals.scientificname} {animals.numberinthewild}</li>)}
+            {animal.map(animal =>
+                <li key={animal.id}> {animal.commonname} {animal.scientificname} {animal.numberinthewild}</li>)}
         </ul>
-        {/* <Form addAnimals={addAnimals} /> */}
+        <Form addAnimal={addAnimal} />
     </div>
 );
   }

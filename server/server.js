@@ -36,17 +36,26 @@ app.get('/api/animals', cors(), async (req, res) => {
     }
 });
 
-// create the POST request
-// app.post('/api/animals', cors(), async (req, res) => {
-//     const newUser = { commonname: req.body.firstname, lastname: req.body.lastname }
-//     console.log([newUser.firstname, newUser.lastname]);
-//     const result = await db.query(
-//         'INSERT INTO students(firstname, lastname) VALUES($1, $2) RETURNING *',
-//         [newUser.firstname, newUser.lastname]
-//     );
-//     console.log(result.rows[0]);
-//     res.json(result.rows[0]);
-// });
+app.get('/api/sightings', cors(), async (req, res) => {
+    try{
+        const {rows: sightings} = await db.query('SELECT individuals.nickname, sightings.datetime, sightings.healthy, sightings.location FROM individuals INNER JOIN sightings ON individuals.id=sightings.individualid');
+        res.send(sightings);
+    } catch (e) {
+        return res.status(400).json({e});
+    }
+});
+
+//create the POST request
+app.post('/api/animals', cors(), async (req, res) => {
+    const newAnimal = { commonname: req.body.commonname, scientificname: req.body.scientificname, numberinthewild: req.body.numberinthewild, conservationcode: req.body.conservationcode }
+    console.log([newAnimal.commonname, newAnimal.scientificname]);
+    const result = await db.query(
+        'INSERT INTO animals (commonname, scientificname, numberinthewild, conservationcode) VALUES($1, $2, $3, $4) RETURNING *',
+        [newAnimal.commonname, newAnimal.scientificname, newAnimal.numberinthewild, newAnimal.conservationcode]
+    );
+    console.log(result.rows[0]);
+    res.json(result.rows[0]);
+});
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
